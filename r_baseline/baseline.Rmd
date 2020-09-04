@@ -27,4 +27,8 @@ plot it
 ```{r}
 plot(x = 1:length(row), y=row)  
 lines(x = 1:length(row), y=bc.fillPeaks@baseline, col='green')  
+```   
+Try another method
+```{r}
+bc2.fillPeaks <- baseline(row, wm=200, ws=200, method='rollingBall')
 ```

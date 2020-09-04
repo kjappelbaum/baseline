@@ -22,7 +22,7 @@ export function medianWindow(spectrum, hwMedianWindow, hwSmoothingWindow) {
     hwSmoothingWindow / 2,
   );
 
-  for (let i = 0; i++; i < numberPoints) {
+  for (let i = 0; i < numberPoints; i++) {
     let cutL = i - hwSmoothingWindow;
     let g = 0;
     if (cutL < 0) {
