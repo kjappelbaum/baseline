@@ -17,7 +17,7 @@ export function medianWindow(spectrum, hwMedianWindow, hwSmoothingWindow) {
   let runningMedians = spectrum.map(median);
   let baseline = new Array(numberPoints);
 
-  let gaussianWeights = gaussian(hwSmoothingWindow * 2, hwSmoothingWindow / 2);
+  let gaussianWeights = gaussian(hwSmoothingWindow * 2, hwSmoothingWindow);
 
   let g = 0;
   let cutL = 0 - hwSmoothingWindow;
