@@ -1,5 +1,5 @@
 let createMedianFilter = require('moving-median'); // ToDo: maybe reimplement this
-
+import { dot } from './utils';
 // WARNING: Still WIP
 
 /**
@@ -17,14 +17,12 @@ export function medianWindow(spectrum, hwMedianWindow, hwSmoothingWindow) {
   let runningMedians = spectrum.map(median);
   let baseline = new Array(numberPoints);
 
-  let gaussianWeights = gaussian(
-    hwSmoothingWindow * 2 + 1,
-    hwSmoothingWindow / 2,
-  );
+  let gaussianWeights = gaussian(hwSmoothingWindow * 2, hwSmoothingWindow / 2);
 
+  let g = 0;
+  let cutL = 0 - hwSmoothingWindow;
   for (let i = 0; i < numberPoints; i++) {
-    let cutL = i - hwSmoothingWindow;
-    let g = 0;
+    cutL = i - hwSmoothingWindow;
     if (cutL < 0) {
       g = gaussianWeights.slice(-cutL, gaussianWeights.length);
     } else if (numberPoints < i + hwSmoothingWindow) {
@@ -35,18 +33,24 @@ export function medianWindow(spectrum, hwMedianWindow, hwSmoothingWindow) {
     } else {
       g = gaussianWeights;
     }
-    g = g / Math.sum(g);
-    baseline[i] = runningMedians.slice(
-      Math.max(1, i - hwSmoothingWindow),
+    let sum = g.reduce((a, b) => a + b, 0);
+    g = g.map(function (item) {
+      return item / sum;
+    });
+
+    let slice = runningMedians.slice(
+      Math.max(0, i - hwSmoothingWindow),
       Math.min(i + hwSmoothingWindow, numberPoints),
     );
+    baseline[i] = dot(slice, g);
   }
+  return baseline;
 }
 
 function gaussian(length, sd) {
   const center = (length - 1) / 2;
 
-  const data = new Float64Array(length);
+  const data = new Float32Array(length);
   const normalConstant = 1 / Math.sqrt(2 * Math.PI) / sd;
   for (let i = 0; i <= center; i++) {
     data[i] =

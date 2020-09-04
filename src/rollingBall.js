@@ -33,7 +33,7 @@ export function rollingBall(spectrum, windowM, windowS) {
 
   minima[0] = Math.min(...spectrum.slice(0, u1 + 1));
   /* Start of spectrum */
-  for (let i = 1; i <= windowM; i++) {
+  for (let i = 1; i < windowM; i++) {
     let u2 = u1 + 1 + ((i + 1) % 2);
     minima[i] = Math.min(
       Math.min(...spectrum.slice(u1 + 1, u2 + 1)),
@@ -43,7 +43,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   }
 
   /* Main part of spectrum */
-  for (let j = windowM + 1; j <= numberPoints - windowM; j++) {
+  for (let j = windowM; j < numberPoints - windowM; j++) {
     if (
       spectrum[u1 + 1] <= minima[j - 1] &&
       spectrum[u1 - windowM] !== minima[j - 1]
@@ -57,12 +57,12 @@ export function rollingBall(spectrum, windowM, windowS) {
   u1 = numberPoints - 2 * windowM - 2;
 
   /* End part of spectrum */
-  for (let k = numberPoints - windowM + 1; k < numberPoints; k++) {
+  for (let k = numberPoints - windowM; k < numberPoints; k++) {
     let u2 = u1 + 1 + (k % 2);
-    if (Math.min(...spectrum.slice(u1, u2 - 1)) > minima[k - 1]) {
+    if (Math.min(...spectrum.slice(u1, u2)) > minima[k - 1]) {
       minima[k] = minima[k - 1];
     } else {
-      minima[k] = Math.min(...spectrum.slice(u1, numberPoints - 1));
+      minima[k] = Math.min(...spectrum.slice(u2, numberPoints - 1));
     }
   }
 
@@ -71,7 +71,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   maxima[0] = Math.max(...minima.slice(0, u1 + 1));
 
   /* Start of spectrum */
-  for (let i = 1; i <= windowM; i++) {
+  for (let i = 1; i < windowM; i++) {
     let u2 = u1 + 1 + ((i + 1) % 2);
     maxima[i] = Math.max(
       Math.max(...minima.slice(u1 + 1, u2 + 1)),
@@ -81,7 +81,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   }
 
   /* Main part of spectrum */
-  for (let j = windowM + 2; j <= numberPoints - windowM; j++) {
+  for (let j = windowM + 1; j < numberPoints - windowM; j++) {
     if (
       minima[u1 + 1] >= maxima[j - 1] &&
       minima[u1 - windowM] !== maxima[j - 1]
@@ -95,9 +95,9 @@ export function rollingBall(spectrum, windowM, windowS) {
 
   /* End part of spectrum */
   u1 = numberPoints - 2 * windowM - 2;
-  for (let k = numberPoints - windowM + 1; k < numberPoints; k++) {
+  for (let k = numberPoints - windowM; k < numberPoints; k++) {
     let u2 = u1 + 1 + (k % 2);
-    if (Math.max(...minima.slice(u1, u2)) > maxima[k - 1]) {
+    if (Math.max(...minima.slice(u1, u2)) < maxima[k - 1]) {
       maxima[k] = maxima[k - 1];
     } else {
       maxima[k] = Math.max(...minima.slice(u2, numberPoints - 1));
@@ -109,7 +109,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   u1 = Math.ceil(windowS / 2) - 1;
   let v = maxima.slice(0, u1 + 1).reduce((a, b) => a + b, 0);
 
-  for (let i = 0; i <= windowS; i++) {
+  for (let i = 0; i < windowS; i++) {
     let u2 = u1 + 1 + ((i + 1) % 2);
     v += maxima.slice(u1 + 1, u2 + 1).reduce((a, b) => a + b, 0);
     baseline[i] = v / u2;
@@ -119,7 +119,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   /* middle of spectrum */
   v = maxima.slice(0, windowS * 2 + 2).reduce((a, b) => a + b, 0);
   baseline[windowS] = v / (2 * windowS + 1);
-  for (let j = windowS + 1; j <= numberPoints - windowS; j++) {
+  for (let j = windowS + 1; j < numberPoints - windowS; j++) {
     v = v - maxima[j - windowS - 1] + maxima[j + windowS];
     baseline[j] = v / (2 * windowS + 1);
   }

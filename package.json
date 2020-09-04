@@ -48,5 +48,9 @@
     "jest": "^26.4.2",
     "prettier": "^2.1.1",
     "rollup": "^2.26.8"
+  },
+  "dependencies": {
+    "mathjs": "^7.2.0",
+    "moving-median": "^1.0.0"
   }
 }

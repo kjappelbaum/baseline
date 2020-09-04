@@ -5001,7 +5001,7 @@ export const rollingBallBaseline = new Float32Array([
   26.6554726368159,
 ]);
 
-export const medianWindow = new Float32Array([
+export const medianWindowBaseline = new Float32Array([
   563.447322202514,
   563.368385205728,
   563.289109204716,
