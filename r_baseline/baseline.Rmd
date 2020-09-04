@@ -1,0 +1,30 @@
+---
+title: "Gettimng some baseline baselines"
+output: html_notebook
+---
+
+```{r}
+library(baseline)
+data(milk)
+row = (milk$spectra[1,, drop=FALSE])
+```
+
+Plot the data now
+
+```{r}
+plot(x = 1:length(row), y=row)  
+```
+Looks a bit like a PXRD pattern ...
+
+## Try some baseline correction methods
+
+```{r}
+bc.fillPeaks <- baseline(row, wm=200, ws=200, method='rollingBall')
+```
+
+plot it 
+
+```{r}
+plot(x = 1:length(row), y=row)  
+lines(x = 1:length(row), y=bc.fillPeaks@baseline, col='green')  
+```
