@@ -1,4 +1,4 @@
-export const rollingBall = new Float32Array([
+export const rollingBallBaseline = new Float32Array([
   514,
   514,
   514,
