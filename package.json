@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "mathjs": "^7.2.0",
+    "ml-pad-array": "^2.0.0",
     "moving-median": "^1.0.0"
   }
 }

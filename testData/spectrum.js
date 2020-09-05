@@ -1,4 +1,4 @@
-export const spectrum = new Float32Array([
+export const spectrum = [
   1028.75,
   923.5,
   826,
@@ -4999,4 +4999,4 @@ export const spectrum = new Float32Array([
   41,
   31.75,
   32,
-]);
+];

@@ -6,7 +6,7 @@ output: html_notebook
 ```{r}
 library(baseline)
 data(milk)
-row = (milk$spectra[1,, drop=FALSE])
+row = (milk$spectra[1,1:5000, drop=FALSE])
 ```
 
 Plot the data now
@@ -14,12 +14,13 @@ Plot the data now
 ```{r}
 plot(x = 1:length(row), y=row)  
 ```
+
 Looks a bit like a PXRD pattern ...
 
 ## Try some baseline correction methods
 
 ```{r}
-bc.fillPeaks <- baseline(row, wm=200, ws=200, method='rollingBall')
+bc.fillPeaks <- baseline(row, wm=200, ws=400, method='rollingBall')
 ```
 
 plot it 
@@ -30,5 +31,10 @@ lines(x = 1:length(row), y=bc.fillPeaks@baseline, col='green')
 ```   
 Try another method
 ```{r}
-bc2.fillPeaks <- baseline(row, wm=200, ws=200, method='rollingBall')
+bc2.fillPeaks <- baseline(row, hwm=500, method='medianWindow')
 ```
+plot it
+```{r}
+plot(x = 1:length(row), y=row)  
+lines(x = 1:length(row), y=bc2.fillPeaks@baseline, col='green')  
+```   

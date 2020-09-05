@@ -1,23 +1,23 @@
-let createMedianFilter = require('moving-median'); // ToDo: maybe reimplement this
-import { dot } from './utils';
-// WARNING: Still WIP
+// ToDo: maybe reimplement this
+import { dot, medianSlidingWindow } from './utils';
 
 /**
  *
  * (1) Friedrichs, MarkS. A Model-Free Algorithm for the Removal of Baseline Artifacts.
  * J Biomol NMR 1995, 5 (2). https://doi.org/10.1007/BF00208805.
  * @export
- * @param {*} spectrum
- * @param {*} hwMedianWindow
- * @param {*} hwSmoothingWindow
+ * @param {Array} spectrum:
+ * @param {Number} hwMedianWindow: half width of median window
+ * @param {Number} hwSmoothingWindow: half width of smoothing window
  */
 export function medianWindow(spectrum, hwMedianWindow, hwSmoothingWindow) {
   const numberPoints = spectrum.length;
-  let median = createMedianFilter(2 * hwMedianWindow + 1);
-  let runningMedians = spectrum.map(median);
+  let runningMedians = medianSlidingWindow(spectrum, 2 * hwMedianWindow + 1);
   let baseline = new Array(numberPoints);
 
-  let gaussianWeights = gaussian(hwSmoothingWindow * 2, hwSmoothingWindow);
+  console.log(runningMedians.length);
+
+  let gaussianWeights = gaussian(hwSmoothingWindow * 2, hwSmoothingWindow / 2);
 
   let g = 0;
   let cutL = 0 - hwSmoothingWindow;
