@@ -31,10 +31,15 @@ lines(x = 1:length(row), y=bc.fillPeaks@baseline, col='green')
 ```   
 Try another method
 ```{r}
-bc2.fillPeaks <- baseline(row, hwm=500, method='medianWindow')
+bc2.fillPeaks <- baseline(row, hwm=500, method='medianWindow', end=TRUE)
 ```
 plot it
 ```{r}
 plot(x = 1:length(row), y=row)  
 lines(x = 1:length(row), y=bc2.fillPeaks@baseline, col='green')  
 ```   
+```{r}
+running_median = runmed(row, k = 2*500 + 1, endrule = 'constant')
+running_median[5000]
+```
+

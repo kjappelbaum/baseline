@@ -15,8 +15,6 @@ export function medianWindow(spectrum, hwMedianWindow, hwSmoothingWindow) {
   let runningMedians = medianSlidingWindow(spectrum, 2 * hwMedianWindow + 1);
   let baseline = new Array(numberPoints);
 
-  console.log(runningMedians.length);
-
   let gaussianWeights = gaussian(hwSmoothingWindow * 2, hwSmoothingWindow / 2);
 
   let g = 0;
