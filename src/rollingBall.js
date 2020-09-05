@@ -19,8 +19,8 @@
  *     https://cran.r-project.org/web/packages/baseline/index.html
  * @export
  * @param {Array} spectrum
- * @param {Number} windowM
- * @param {Number} windowS
+ * @param {Number} windowM: width of local window for minimization/maximization
+ * @param {Number} windowS:width of local window for smoothing
  */
 export function rollingBall(spectrum, windowM, windowS) {
   const numberPoints = spectrum.length;

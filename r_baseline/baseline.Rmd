@@ -40,6 +40,11 @@ lines(x = 1:length(row), y=bc2.fillPeaks@baseline, col='green')
 ```   
 ```{r}
 running_median = runmed(row, k = 2*500 + 1, endrule = 'constant')
-running_median[5000]
+```
+
+```{r}
+bc3.fillPeaks <- baseline(row, lambda=9, method='als')
+plot(x = 1:length(row), y=row)  
+lines(x = 1:length(row), y=bc3.fillPeaks@baseline, col='green')  
 ```
 
