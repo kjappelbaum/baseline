@@ -1,5 +1,5 @@
 {
-  "name": "baseline",
+  "name": "baselines",
   "version": "0.0.0",
   "description": "baseline correction methods for javascript",
   "main": "lib/index.js",
@@ -18,15 +18,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cheminfo/baseline.git"
+    "url": "git+https://github.com/cheminfo/baselines.git"
   },
   "keywords": [],
   "author": "Kevin Maik Jablonka",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cheminfo/baseline/issues"
+    "url": "https://github.com/cheminfo/baselines/issues"
   },
-  "homepage": "https://github.com/cheminfo/baseline#readme",
+  "homepage": "https://github.com/cheminfo/baselines#readme",
   "jest": {
     "testEnvironment": "node"
   },
@@ -50,8 +50,6 @@
     "rollup": "^2.26.8"
   },
   "dependencies": {
-    "mathjs": "^7.2.0",
-    "ml-pad-array": "^2.0.0",
-    "moving-median": "^1.0.0"
+    "ml-pad-array": "^2.0.0"
   }
 }

@@ -64,6 +64,7 @@ export function rollingBall(spectrum, windowM, windowS) {
     } else {
       minima[k] = Math.min(...spectrum.slice(u2, numberPoints - 1));
     }
+    u1 = u2;
   }
 
   /* Maximization */
@@ -81,7 +82,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   }
 
   /* Main part of spectrum */
-  for (let j = windowM + 1; j < numberPoints - windowM; j++) {
+  for (let j = windowM; j < numberPoints - windowM; j++) {
     if (
       minima[u1 + 1] >= maxima[j - 1] &&
       minima[u1 - windowM] !== maxima[j - 1]
@@ -102,6 +103,7 @@ export function rollingBall(spectrum, windowM, windowS) {
     } else {
       maxima[k] = Math.max(...minima.slice(u2, numberPoints - 1));
     }
+    u1 = u2;
   }
 
   /* Now, averaging to smooth */
@@ -117,7 +119,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   }
 
   /* middle of spectrum */
-  v = maxima.slice(0, windowS * 2 + 2).reduce((a, b) => a + b, 0);
+  v = maxima.slice(0, windowS * 2 + 1).reduce((a, b) => a + b, 0);
   baseline[windowS] = v / (2 * windowS + 1);
   for (let j = windowS + 1; j < numberPoints - windowS; j++) {
     v = v - maxima[j - windowS - 1] + maxima[j + windowS];
@@ -133,7 +135,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   for (let k = numberPoints - windowS + 1; k < numberPoints; k++) {
     let u2 = u1 + 1 + (k % 2);
     v -= maxima.slice(u1, u2).reduce((a, b) => a + b, 0);
-    baseline[k] = v / (numberPoints - u2);
+    baseline[k] = v / (numberPoints - u2 + 1);
     u1 = u2;
   }
 

@@ -1774,8 +1774,8 @@ row = (milk$spectra[1,1:5000, drop=FALSE])</code></pre>
 <h2>Try some baseline correction methods</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmMuZmlsbFBlYWtzIDwtIGJhc2VsaW5lKHJvdywgd209MjAwLCB3cz00MDAsIG1ldGhvZD0ncm9sbGluZ0JhbGwnKVxuYGBgIn0= -->
-<pre class="r"><code>bc.fillPeaks &lt;- baseline(row, wm=200, ws=400, method=&#39;rollingBall&#39;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmMuZmlsbFBlYWtzIDwtIGJhc2VsaW5lKHJvdywgd209NDAwLCB3cz0yMDAsIG1ldGhvZD0ncm9sbGluZ0JhbGwnKVxuYGBgIn0= -->
+<pre class="r"><code>bc.fillPeaks &lt;- baseline(row, wm=400, ws=200, method=&#39;rollingBall&#39;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1794,8 +1794,8 @@ lines(x = 1:length(row), y=bc.fillPeaks@baseline, col=&#39;green&#39;)  </code><
 <p>Try another method</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmMyLmZpbGxQZWFrcyA8LSBiYXNlbGluZShyb3csIGh3bT0yMDAsIG1ldGhvZD0nbWVkaWFuV2luZG93JywgZW5kPVRSVUUpXG5gYGAifQ== -->
-<pre class="r"><code>bc2.fillPeaks &lt;- baseline(row, hwm=200, method=&#39;medianWindow&#39;, end=TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmMyLmZpbGxQZWFrcyA8LSBiYXNlbGluZShyb3csIGh3bT01MDAsIG1ldGhvZD0nbWVkaWFuV2luZG93JywgZW5kPVRSVUUpXG5gYGAifQ== -->
+<pre class="r"><code>bc2.fillPeaks &lt;- baseline(row, hwm=500, method=&#39;medianWindow&#39;, end=TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->

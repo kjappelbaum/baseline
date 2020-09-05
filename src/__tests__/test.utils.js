@@ -1,6 +1,6 @@
-import { medianSlidingWindow } from '../utils';
-import { spectrum } from '../../testData/spectrum';
 import { runningMedianConst } from '../../testData/runningmed';
+import { spectrum } from '../../testData/spectrum';
+import { medianSlidingWindow } from '../utils';
 
 describe('test running median', () => {
   it('compare with R', () => {

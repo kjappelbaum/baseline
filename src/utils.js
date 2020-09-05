@@ -20,7 +20,7 @@ export function medianSlidingWindow(arr, k) {
   while (index <= arr.length) {
     const current = queue.slice(0);
     current.sort((a, b) => a - b);
-    const length = current.length; //eslint-disable-line
+    const length = current.length;
     const middle = Math.floor(length / 2);
     const isEven = length % 2 === 0;
     if (isEven) {

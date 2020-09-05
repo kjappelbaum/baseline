@@ -9,7 +9,7 @@ describe('test medianWindow', () => {
     for (let i = 0; i < spectrum.length; i++) {
       expect(
         Math.abs(bl[i] - medianWindowBaseline[i]) / medianWindowBaseline[i],
-      ).toBeLessThan(0.3);
+      ).toBeLessThan(0.02);
     }
   });
 });

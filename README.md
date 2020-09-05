@@ -1,4 +1,4 @@
-# baseline
+baselines
 
 [![NPM version][npm-image]][npm-url]
 [![build status][ci-image]][ci-url]
@@ -8,7 +8,7 @@ baseline correction methods for javascript.
 
 ## Installation
 
-`$ npm i baseline`
+`$ npm i baselines`
 
 ## Usage
 
@@ -19,15 +19,15 @@ const result = library(args);
 // result is ...
 ```
 
-## [API Documentation](https://cheminfo.github.io/baseline/)
+## [API Documentation](https://cheminfo.github.io/baselines/)
 
 ## License
 
 [MIT](./LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/baseline.svg
-[npm-url]: https://www.npmjs.com/package/baseline
-[ci-image]: https://github.com/cheminfo/baseline/workflows/Node.js%20CI/badge.svg?branch=master
-[ci-url]: https://github.com/cheminfo/baseline/actions?query=workflow%3A%22Node.js+CI%22
-[download-image]: https://img.shields.io/npm/dm/baseline.svg
-[download-url]: https://www.npmjs.com/package/baseline
+[npm-image]: https://img.shields.io/npm/v/baselines.svg
+[npm-url]: https://www.npmjs.com/package/baselines
+[ci-image]: https://github.com/cheminfo/baselines/workflows/Node.js%20CI/badge.svg?branch=master
+[ci-url]: https://github.com/cheminfo/baselines/actions?query=workflow%3A%22Node.js+CI%22
+[download-image]: https://img.shields.io/npm/dm/baselines.svg
+[download-url]: https://www.npmjs.com/package/baselines
