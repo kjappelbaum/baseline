@@ -18,7 +18,7 @@
  * (2) Kristian Hovde Liland, Bjørn-Helge Mevik, Roberto Canteri: baseline.
  *     https://cran.r-project.org/web/packages/baseline/index.html
  * @export
- * @param {Array} spectrum
+ * @param {Array<Number>} spectrum
  * @param {Number} windowM: width of local window for minimization/maximization
  * @param {Number} windowS:width of local window for smoothing
  */
@@ -30,11 +30,12 @@ export function rollingBall(spectrum, windowM, windowS) {
 
   /* Find the minima */
   let u1 = Math.ceil((windowM + 1) / 2);
+  let u2 = 0;
 
   minima[0] = Math.min(...spectrum.slice(0, u1 + 1));
   /* Start of spectrum */
   for (let i = 1; i < windowM; i++) {
-    let u2 = u1 + 1 + ((i + 1) % 2);
+    u2 = u1 + 1 + ((i + 1) % 2);
     minima[i] = Math.min(
       Math.min(...spectrum.slice(u1 + 1, u2 + 1)),
       minima[i - 1],
@@ -58,7 +59,7 @@ export function rollingBall(spectrum, windowM, windowS) {
 
   /* End part of spectrum */
   for (let k = numberPoints - windowM; k < numberPoints; k++) {
-    let u2 = u1 + 1 + (k % 2);
+    u2 = u1 + 1 + (k % 2);
     if (Math.min(...spectrum.slice(u1, u2)) > minima[k - 1]) {
       minima[k] = minima[k - 1];
     } else {
@@ -73,7 +74,7 @@ export function rollingBall(spectrum, windowM, windowS) {
 
   /* Start of spectrum */
   for (let i = 1; i < windowM; i++) {
-    let u2 = u1 + 1 + ((i + 1) % 2);
+    u2 = u1 + 1 + ((i + 1) % 2);
     maxima[i] = Math.max(
       Math.max(...minima.slice(u1 + 1, u2 + 1)),
       maxima[i - 1],
@@ -97,7 +98,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   /* End part of spectrum */
   u1 = numberPoints - 2 * windowM - 2;
   for (let k = numberPoints - windowM; k < numberPoints; k++) {
-    let u2 = u1 + 1 + (k % 2);
+    u2 = u1 + 1 + (k % 2);
     if (Math.max(...minima.slice(u1, u2)) < maxima[k - 1]) {
       maxima[k] = maxima[k - 1];
     } else {
@@ -112,7 +113,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   let v = maxima.slice(0, u1 + 1).reduce((a, b) => a + b, 0);
 
   for (let i = 0; i < windowS; i++) {
-    let u2 = u1 + 1 + ((i + 1) % 2);
+    u2 = u1 + 1 + ((i + 1) % 2);
     v += maxima.slice(u1 + 1, u2 + 1).reduce((a, b) => a + b, 0);
     baseline[i] = v / u2;
     u1 = u2;
@@ -133,7 +134,7 @@ export function rollingBall(spectrum, windowM, windowS) {
   /* Finally, end of the spectrum */
 
   for (let k = numberPoints - windowS + 1; k < numberPoints; k++) {
-    let u2 = u1 + 1 + (k % 2);
+    u2 = u1 + 1 + (k % 2);
     v -= maxima.slice(u1, u2).reduce((a, b) => a + b, 0);
     baseline[k] = v / (numberPoints - u2 + 1);
     u1 = u2;

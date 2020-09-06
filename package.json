@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "ml-matrix": "^6.5.1",
-    "ml-pad-array": "^2.0.0"
+    "ml-pad-array": "^2.0.0",
+    "ml-regression-polynomial": "^2.1.0"
   }
 }

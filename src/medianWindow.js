@@ -5,7 +5,7 @@ import { dot, medianSlidingWindow } from './utils';
  * (1) Friedrichs, MarkS. A Model-Free Algorithm for the Removal of Baseline Artifacts.
  * J Biomol NMR 1995, 5 (2). https://doi.org/10.1007/BF00208805.
  * @export
- * @param {Array} spectrum:
+ * @param {Array<Number>} spectrum:
  * @param {Number} hwMedianWindow: half width of median window
  * @param {Number} hwSmoothingWindow: half width of smoothing window
  */
@@ -21,6 +21,7 @@ export function medianWindow(
   let gaussianWeights = gaussian(hwSmoothingWindow * 2, hwSmoothingWindow / 2);
 
   let g = 0;
+  let slice = 0;
   let cutL = 0 - hwSmoothingWindow;
   for (let i = 0; i < numberPoints; i++) {
     cutL = i - hwSmoothingWindow;
@@ -39,7 +40,7 @@ export function medianWindow(
       return item / sum;
     });
 
-    let slice = runningMedians.slice(
+    slice = runningMedians.slice(
       Math.max(0, i - hwSmoothingWindow),
       Math.min(i + hwSmoothingWindow, numberPoints),
     );
