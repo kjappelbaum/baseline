@@ -50,6 +50,7 @@
     "rollup": "^2.26.8"
   },
   "dependencies": {
+    "ml-matrix": "^6.5.1",
     "ml-pad-array": "^2.0.0"
   }
 }

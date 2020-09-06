@@ -37,3 +37,32 @@ export function medianSlidingWindow(arr, k) {
 
   return padArray(result, { size: k2, value: 'replicate' });
 }
+
+/**
+ * Implements basic idea of Matlab's diff function
+ * https://www.mathworks.com/help/matlab/ref/diff.html
+ *
+ * I.e., we get the differences beween rows. Hence if we
+ * apply it to a (p,m) matrix we get a (p-1, m) matrix
+ *
+ * @param {Matrix} matrix
+ * @returns
+ */
+function diff(matrix) {
+  const rows = matrix.rows;
+  const cols = matrix.columns;
+  const a = matrix.subMatrix(0, rows - 2, 0, cols - 1);
+  const b = matrix.subMatrix(1, rows - 1, 0, cols - 1);
+  return a.sub(b);
+}
+
+/**
+ * second order difference, equivalent to diff(X, 2) in Matlab
+ *
+ * @export
+ * @param {Matrix} matrix
+ * @returns
+ */
+export function secondOrderDiff(matrix) {
+  return diff(diff(matrix));
+}
