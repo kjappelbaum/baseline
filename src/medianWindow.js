@@ -21,6 +21,7 @@ export function medianWindow(
   let gaussianWeights = gaussian(hwSmoothingWindow * 2, hwSmoothingWindow / 2);
 
   let g = 0;
+  let slice;
   let cutL = 0 - hwSmoothingWindow;
   for (let i = 0; i < numberPoints; i++) {
     cutL = i - hwSmoothingWindow;
@@ -39,7 +40,7 @@ export function medianWindow(
       return item / sum;
     });
 
-    let slice = runningMedians.slice(
+    slice = runningMedians.slice(
       Math.max(0, i - hwSmoothingWindow),
       Math.min(i + hwSmoothingWindow, numberPoints),
     );
