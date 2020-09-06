@@ -1,7 +1,4 @@
-/**
- * Returns a very important number
- * @return {number}
- */
-export function myModule() {
-  return 42;
-}
+import { medianWindow } from './medianWindow';
+import { rollingBall } from './rollingBall';
+
+export { medianWindow, rollingBall };

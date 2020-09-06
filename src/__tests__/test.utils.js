@@ -1,8 +1,8 @@
+import { Matrix } from 'ml-matrix';
+
 import { runningMedianConst } from '../../testData/runningmed';
 import { spectrum } from '../../testData/spectrum';
-import { medianSlidingWindow } from '../utils';
-import { secondOrderDiff } from '../utils';
-import { Matrix } from 'ml-matrix';
+import { medianSlidingWindow, secondOrderDiff } from '../utils';
 
 describe('test running median', () => {
   it('compare with R', () => {

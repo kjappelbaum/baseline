@@ -1,4 +1,3 @@
-// ToDo: maybe reimplement this
 import { dot, medianSlidingWindow } from './utils';
 
 /**
@@ -10,7 +9,11 @@ import { dot, medianSlidingWindow } from './utils';
  * @param {Number} hwMedianWindow: half width of median window
  * @param {Number} hwSmoothingWindow: half width of smoothing window
  */
-export function medianWindow(spectrum, hwMedianWindow, hwSmoothingWindow) {
+export function medianWindow(
+  spectrum,
+  hwMedianWindow,
+  hwSmoothingWindow = hwMedianWindow,
+) {
   const numberPoints = spectrum.length;
   let runningMedians = medianSlidingWindow(spectrum, 2 * hwMedianWindow + 1);
   let baseline = new Array(numberPoints);
