@@ -29,7 +29,7 @@ export function iterativePolynomial(
   let previousFit = spectrum;
   const numberPoints = spectrum.length;
   if (!x) {
-    x = [...Array(numberPoints - 1).keys()];
+    x = [...Array(numberPoints).keys()];
   }
 
   let iteration = 0;
@@ -47,6 +47,7 @@ export function iterativePolynomial(
 
       delta += Math.abs((fit[i] - previousFit[i]) / previousFit[i]);
     }
+
     if (delta < tol) {
       break;
     } else {
@@ -54,5 +55,6 @@ export function iterativePolynomial(
       iteration++;
     }
   }
+
   return baseline;
 }
