@@ -30,7 +30,7 @@ export function rollingBall(spectrum, windowM, windowS) {
 
   /* Find the minima */
   let u1 = Math.ceil((windowM + 1) / 2);
-  let u2 = 0; 
+  let u2 = 0;
 
   minima[0] = Math.min(...spectrum.slice(0, u1 + 1));
   /* Start of spectrum */
