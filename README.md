@@ -5,6 +5,7 @@
 [![npm download][download-image]][download-url]
 
 Collects baseline correction methods for javascript.
+The idea is that all methods can be used by just providing the measurements y as input.
 
 ## Installation
 

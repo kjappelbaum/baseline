@@ -1,3 +1,5 @@
 import { rollingBallBaseline } from 'ml-rolling-ball-baseline';
 
-export { rollingBallBaseline };
+import { iterativePolynomialBaseline } from './iterativePolynomial';
+
+export { rollingBallBaseline, iterativePolynomialBaseline };
