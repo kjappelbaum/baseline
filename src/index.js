@@ -1,4 +1,3 @@
-import { medianWindow } from './medianWindow';
-import { rollingBall } from './rollingBall';
+import { rollingBallBaseline } from 'ml-rolling-ball-baseline';
 
-export { medianWindow, rollingBall };
+export { rollingBallBaseline };

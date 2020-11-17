@@ -1,10 +1,10 @@
-baselines
+# baselines
 
 [![NPM version][npm-image]][npm-url]
 [![build status][ci-image]][ci-url]
 [![npm download][download-image]][download-url]
 
-baseline correction methods for javascript.
+Collects baseline correction methods for javascript.
 
 ## Installation
 
