@@ -3,7 +3,7 @@ import baselineCorrection from 'ml-baseline-correction-regression';
 /**
  * Iterative polynomial fitting [1]
  *
- * Implementation based on https://github.com/mljs/baseline-correction-regression/blob/master/src/index.js
+ * Implementation based on ml-baseline-correction-regression
  *
  * References:
  * [1] Gan, F.; Ruan, G.; Mo, J.
