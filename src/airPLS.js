@@ -28,5 +28,5 @@ export function airPLSBaseline(spectrum, x, options = {}) {
 
   let output = airpls(x, spectrum, options);
 
-  return BaselineOutput(output.baseline, spectrum - output.baseline);
+  return new BaselineOutput(output.baseline, output.corrected);
 }

@@ -30,5 +30,10 @@ import { BaselineOutput } from './output.js';
  */
 export function rollingBallBaseline(spectrum, options = {}) {
   const baseline = rollingBall(spectrum, options);
-  return BaselineOutput(baseline, spectrum - baseline);
+  let corrected = new Float64Array(spectrum.length);
+  for (let i = 0; i < corrected.length; i++) {
+    corrected[i] = spectrum[i] - baseline[i];
+  }
+
+  return new BaselineOutput(baseline, corrected);
 }
