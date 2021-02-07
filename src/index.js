@@ -1,4 +1,5 @@
-import { medianWindow } from './medianWindow';
-import { rollingBall } from './rollingBall';
+import { airPLSBaseline } from './airPLS';
+import { iterativePolynomialBaseline } from './iterativePolynomial';
+import { rollingBallBaseline } from './rollingBall';
 
-export { medianWindow, rollingBall };
+export { airPLSBaseline, iterativePolynomialBaseline, rollingBallBaseline };

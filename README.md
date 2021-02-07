@@ -1,10 +1,11 @@
-baselines
+# baselines
 
 [![NPM version][npm-image]][npm-url]
 [![build status][ci-image]][ci-url]
 [![npm download][download-image]][download-url]
 
-baseline correction methods for javascript.
+Collects baseline correction methods for JavaScript.
+The idea is that all methods can be used by just providing the measurements y as input.
 
 ## Installation
 
@@ -13,10 +14,15 @@ baseline correction methods for javascript.
 ## Usage
 
 ```js
-import library from 'baseline';
+import {
+  airPLSBaseline,
+  iterativePolynomialBaseline,
+  rollingBallBaseline,
+} from 'baseline';
 
-const result = library(args);
-// result is ...
+const baselineOutput = rollingBallBaseline(spectrum);
+
+// {baseline: [], correctedSpectrum: []}
 ```
 
 ## [API Documentation](https://cheminfo.github.io/baselines/)
