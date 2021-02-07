@@ -1,5 +1,5 @@
-import { rollingBallBaseline } from 'ml-rolling-ball-baseline';
-
+import { airPLSBaseline } from './airPLS';
 import { iterativePolynomialBaseline } from './iterativePolynomial';
+import { rollingBallBaseline } from './rollingBall';
 
-export { rollingBallBaseline, iterativePolynomialBaseline };
+export { airPLSBaseline, iterativePolynomialBaseline, rollingBallBaseline };

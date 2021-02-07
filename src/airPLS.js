@@ -1,15 +1,15 @@
-import baselineCorrection from 'ml-baseline-correction-regression';
+import airpls from 'ml-airpls';
+
 import { BaselineOutput } from './output.js';
 /**
- * Iterative polynomial fitting [1]
+ * Adaptive iteratively reweighted penalized least squares [1]
  *
- * Implementation based on ml-baseline-correction-regression
+ * This function calls ml-airpls
  *
  * References:
- * [1] Gan, F.; Ruan, G.; Mo, J.
- * Baseline Correction by Improved Iterative Polynomial Fitting with Automatic Threshold.
- *  Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
- * https://doi.org/10.1016/j.chemolab.2005.08.009.
+ * [1] Zhang, Z.-M.; Chen, S.; Liang, Y.-Z.
+ * Baseline Correction Using Adaptive Iteratively Reweighted Penalized Least Squares.
+ * Analyst 2010, 135 (5), 1138–1146. https://doi.org/10.1039/B922045C.
  * @export
  * @param {Array<number>} spectrum
  * @param {Array<number>} x Optional, Independent axis variable. If not specified, we use a linear grid
@@ -20,13 +20,13 @@ import { BaselineOutput } from './output.js';
  * @param {number} [options.tolerance = 0.001] - Convergence error tolerance
  * @returns {BaselineOutput}
  */
-export function iterativePolynomialBaseline(spectrum, x, options = {}) {
+export function airPLSBaseline(spectrum, x, options = {}) {
   const numberPoints = spectrum.length;
   if (!x) {
     x = [...Array(numberPoints).keys()];
   }
 
-  let output = baselineCorrection(x, spectrum, options);
+  let output = airpls(x, spectrum, options);
 
-  return BaselineOutput(output.baseline, spectrum);
+  return BaselineOutput(output.baseline, spectrum - output.baseline);
 }
