@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.1](https://www.github.com/cheminfo/baselines/compare/v0.1.0...v0.1.1) (2021-02-09)
+
+
+### Features
+
+* exporting rolling median ([28531c3](https://www.github.com/cheminfo/baselines/commit/28531c31d7c34fdcd0e417d68e67d6e8a2ce0db0))
+
 ## 0.1.0 (2021-02-09)
 
 
