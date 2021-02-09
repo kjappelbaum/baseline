@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.2](https://www.github.com/cheminfo/baselines/compare/v0.1.1...v0.1.2) (2021-02-09)
+
+
+### Bug Fixes
+
+* added cheminfo-build to dev dependencies ([dffab2b](https://www.github.com/cheminfo/baselines/commit/dffab2b2daeb48d6a5fd5c40f34f0c886e38cad5))
+
 ### [0.1.1](https://www.github.com/cheminfo/baselines/compare/v0.1.0...v0.1.1) (2021-02-09)
 
 
