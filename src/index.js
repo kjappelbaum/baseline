@@ -1,8 +1,8 @@
 import { airPLSBaseline } from './airPLS';
 import { iterativePolynomialBaseline } from './iterativePolynomial';
 import { rollingAverageBaseline } from './rollingAverage';
-import { rollingMedianBaseline } from './rollingMedian';
 import { rollingBallBaseline } from './rollingBall';
+import { rollingMedianBaseline } from './rollingMedian';
 
 export {
   airPLSBaseline,
