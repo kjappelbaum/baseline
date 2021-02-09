@@ -18,7 +18,7 @@ import {
   airPLSBaseline,
   iterativePolynomialBaseline,
   rollingBallBaseline,
-} from 'baseline';
+} from 'baselines';
 
 const baselineOutput = rollingBallBaseline(spectrum);
 
