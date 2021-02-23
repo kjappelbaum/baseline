@@ -1,6 +1,5 @@
+import sequentialFill from 'ml-array-sequential-fill';
 import baselineCorrection from 'ml-baseline-correction-regression';
-
-import { BaselineOutput } from './output.js';
 
 /**
  * Iterative polynomial fitting [1]
@@ -13,22 +12,25 @@ import { BaselineOutput } from './output.js';
  *  Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
  * https://doi.org/10.1016/j.chemolab.2005.08.009.
  * @export
- * @param {Array<number>} spectrum
- * @param {Array<number>} x Optional, Independent axis variable. If not specified, we use a linear grid
+ * @param {Array<number>} ys
  * @param {object} [options] - Options object
- * @param {number} [options.maxIterations = 100] - Maximum number of allowed iterations
- * @param {function} [options.Regression = PolynomialRegression] - Regression class with a predict method
- * @param {*} [options.regressionOptions] - Options for regressionFunction
- * @param {number} [options.tolerance = 0.001] - Convergence error tolerance
+ * @param {Array<number>} [options.x] Optional, Independent axis variable. If not specified, we use a linear grid
+ * @param {Object} [options.regression]
+ * @param {number} [options.regression.maxIterations = 100] - Maximum number of allowed iterations
+ * @param {Object} [options.regression]
+ * @param {function} [options.regression.Regression = PolynomialRegression] - Regression class with a predict method
+ * @param {Object} [options.regression.regressionOptions] - Options for regressionFunction
+ * @param {number} [options.regression.tolerance = 0.001] - Convergence error tolerance
  * @returns {BaselineOutput}
  */
-export function iterativePolynomialBaseline(spectrum, x, options = {}) {
-  const numberPoints = spectrum.length;
+export function iterativePolynomialBaseline(ys, options = {}) {
+  const numberPoints = ys.length;
+  let { x, regressionOptions } = options;
   if (!x) {
-    x = [...Array(numberPoints).keys()];
+    x = sequentialFill({ from: 0, to: numberPoints - 1, size: numberPoints });
   }
 
-  let output = baselineCorrection(x, spectrum, options);
+  let output = baselineCorrection(x, ys, regressionOptions);
 
-  return new BaselineOutput(output.baseline, output.corrected);
+  return { baseline: output.baseline, correctedSpectrum: output.corrected };
 }

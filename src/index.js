@@ -11,3 +11,8 @@ export {
   rollingAverageBaseline,
   rollingMedianBaseline,
 };
+/**
+ * @typedef {Object} BaselineOutput
+ * @property {Array<number>} baseline
+ * @property {Array<number>} correctedSpectrum
+ */
