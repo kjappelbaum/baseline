@@ -1,5 +1,5 @@
 import airpls from 'ml-airpls';
-
+import sequentialFill from 'ml-array-sequential-fill';
 import { BaselineOutput } from './output.js';
 /**
  * Adaptive iteratively reweighted penalized least squares [1]
@@ -12,21 +12,22 @@ import { BaselineOutput } from './output.js';
  * Analyst 2010, 135 (5), 1138–1146. https://doi.org/10.1039/B922045C.
  * @export
  * @param {Array<number>} ys
- * @param {Array<number>} x Optional, Independent axis variable. If not specified, we use a linear grid
  * @param {object} [options] - Options object
- * @param {number} [options.maxIterations = 100] - Maximum number of allowed iterations
- * @param {function} [options.Regression = PolynomialRegression] - Regression class with a predict method
- * @param {*} [options.regressionOptions] - Options for regressionFunction
- * @param {number} [options.tolerance = 0.001] - Convergence error tolerance
+ * @param {Array<number>} [options.x] Optional, Independent axis variable. If not specified, we use a linear grid
+ * @param {object} [options.regression] - Options for the regression
+ * @param {number} [options.regression.maxIterations = 100] - Maximum number of allowed iterations
+ * @param {function} [options.regression.§Regression = PolynomialRegression] - Regression class with a predict method
+ * @param {*} [options.regression.regressionOptions] - Options for regressionFunction
+ * @param {number} [options.regression.tolerance = 0.001] - Convergence error tolerance
  * @returns {BaselineOutput}
  */
-export function airPLSBaseline(ys, x, options = {}) {
+export function airPLSBaseline(ys, options = {}) {
   const numberPoints = ys.length;
+  let { x, regressionOptions } = options;
   if (!x) {
-    x = [...Array(numberPoints).keys()];
+    x = sequentialFill({ from: 0, to: numberPoints - 1, size: numberPoints });
   }
-
-  let output = airpls(x, ys, options);
+  let output = airpls(x, ys, regressionOptions);
 
   return new BaselineOutput(output.baseline, output.corrected);
 }

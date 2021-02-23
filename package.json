@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "ml-airpls": "^0.2.0",
+    "ml-array-sequential-fill": "^1.1.4",
     "ml-baseline-correction-regression": "^0.3.0",
     "ml-rolling-ball-baseline": "^0.1.0",
     "ml-spectra-processing": "^5.4.0"
