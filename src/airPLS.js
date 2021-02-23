@@ -1,6 +1,5 @@
 import airpls from 'ml-airpls';
 import sequentialFill from 'ml-array-sequential-fill';
-import { BaselineOutput } from './output.js';
 /**
  * Adaptive iteratively reweighted penalized least squares [1]
  *
@@ -29,5 +28,5 @@ export function airPLSBaseline(ys, options = {}) {
   }
   let output = airpls(x, ys, regressionOptions);
 
-  return new BaselineOutput(output.baseline, output.corrected);
+  return { baseline: output.baseline, correctedSpectrum: output.corrected };
 }

@@ -1,7 +1,5 @@
 import { rollingBall } from 'ml-rolling-ball-baseline';
 
-import { BaselineOutput } from './output.js';
-
 /**
  * Rolling ball baseline correction algorithm.
  * From the abstract of (1):
@@ -35,5 +33,5 @@ export function rollingBallBaseline(ys, options = {}) {
     corrected[i] = ys[i] - baseline[i];
   }
 
-  return new BaselineOutput(baseline, corrected);
+  return { baseline: baseline, correctedSpectrum: corrected };
 }

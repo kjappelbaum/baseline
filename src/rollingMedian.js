@@ -1,7 +1,5 @@
 import { xRollingMedian } from 'ml-spectra-processing';
 
-import { BaselineOutput } from './output.js';
-
 /**
 
  *
@@ -31,5 +29,5 @@ export function rollingMedianBaseline(ys, options = {}) {
     corrected[i] = ys[i] - baseline[i];
   }
 
-  return new BaselineOutput(baseline, corrected);
+  return { baseline: baseline, correctedSpectrum: corrected };
 }
