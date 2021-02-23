@@ -22,17 +22,17 @@ import { BaselineOutput } from './output.js';
  *     https://cran.r-project.org/web/packages/baseline/index.html
  *
  * @export
- * @param {Array<number>} spectrum
+ * @param {Array<number>} ys
  * @param {Object} [options={}]
  * @param {Number} [options.windowM] - width of local window for minimization/maximization, defaults to 4% of the spectrum length
  * @param {Number} [options.windowS] - width of local window for smoothing, defaults to 8% of the specturm length
  * @returns {BaselineOutput}
  */
-export function rollingBallBaseline(spectrum, options = {}) {
-  const baseline = rollingBall(spectrum, options);
-  let corrected = new Float64Array(spectrum.length);
+export function rollingBallBaseline(ys, options = {}) {
+  const baseline = rollingBall(ys, options);
+  let corrected = new Float64Array(ys.length);
   for (let i = 0; i < corrected.length; i++) {
-    corrected[i] = spectrum[i] - baseline[i];
+    corrected[i] = ys[i] - baseline[i];
   }
 
   return new BaselineOutput(baseline, corrected);

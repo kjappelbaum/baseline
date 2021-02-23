@@ -13,7 +13,7 @@ import { BaselineOutput } from './output.js';
  *  Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
  * https://doi.org/10.1016/j.chemolab.2005.08.009.
  * @export
- * @param {Array<number>} spectrum
+ * @param {Array<number>} ys
  * @param {Array<number>} x Optional, Independent axis variable. If not specified, we use a linear grid
  * @param {object} [options] - Options object
  * @param {number} [options.maxIterations = 100] - Maximum number of allowed iterations
@@ -22,13 +22,13 @@ import { BaselineOutput } from './output.js';
  * @param {number} [options.tolerance = 0.001] - Convergence error tolerance
  * @returns {BaselineOutput}
  */
-export function iterativePolynomialBaseline(spectrum, x, options = {}) {
-  const numberPoints = spectrum.length;
+export function iterativePolynomialBaseline(ys, x, options = {}) {
+  const numberPoints = ys.length;
   if (!x) {
     x = [...Array(numberPoints).keys()];
   }
 
-  let output = baselineCorrection(x, spectrum, options);
+  let output = baselineCorrection(x, ys, options);
 
   return new BaselineOutput(output.baseline, output.corrected);
 }
