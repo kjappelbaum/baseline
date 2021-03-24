@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset='utf-8'>
-  <title>baselines 0.1.2 | Documentation</title>
+  <title>baselines 1.0.0 | Documentation</title>
   <meta name='description' content='baseline correction methods for javascript'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
@@ -15,7 +15,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>baselines</h3>
-          <div class='mb1'><code>0.1.2</code></div>
+          <div class='mb1'><code>1.0.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -39,9 +39,9 @@
               
                 
                 <li><a
-                  href='#baseline'
+                  href='#baselineoutput'
                   class="">
-                  Baseline
+                  BaselineOutput
                   
                 </a>
                 
@@ -107,7 +107,7 @@
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/4e5da3f5762dc5c0fb8869abfe3c5332610ac356/src/airPLS.js#L23-L32'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/a3e348f1f53a73456b40f04feec08aab66a36712/src/airPLS.js#L23-L32'>
       <span>src/airPLS.js</span>
       </a>
     
@@ -121,7 +121,7 @@
 Baseline Correction Using Adaptive Iteratively Reweighted Penalized Least Squares.
 Analyst 2010, 135 (5), 1138–1146. <a href="https://doi.org/10.1039/B922045C">https://doi.org/10.1039/B922045C</a>.</p>
 
-    <div class='pre p1 fill-light mt0'>airPLSBaseline(spectrum: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, x: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?): BaselineOutput</div>
+    <div class='pre p1 fill-light mt0'>airPLSBaseline(ys: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?, function: any): <a href="#baselineoutput">BaselineOutput</a></div>
   
   
 
@@ -138,17 +138,8 @@ Analyst 2010, 135 (5), 1138–1146. <a href="https://doi.org/10.1039/B922045C">h
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>spectrum</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
+            <span class='code bold'>ys</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
 	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>x</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
-	    Optional, Independent axis variable. If not specified, we use a linear grid
-
           </div>
           
         </div>
@@ -175,7 +166,24 @@ Analyst 2010, 135 (5), 1138–1146. <a href="https://doi.org/10.1039/B922045C">h
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.maxIterations</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
+  <td class='break-word'><span class='code bold'>options.x</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>?</code>
+  </td>
+  <td class='break-word'><span>Optional, Independent axis variable. If not specified, we use a linear grid
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.regression</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?</code>
+  </td>
+  <td class='break-word'><span>Options for the regression
+</span></td>
+</tr>
+
+  
+    <tr>
+  <td class='break-word'><span class='code bold'>options.regression.maxIterations</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
   
     (default <code>100</code>)
   </td>
@@ -184,29 +192,18 @@ Analyst 2010, 135 (5), 1138–1146. <a href="https://doi.org/10.1039/B922045C">h
 </tr>
 
 
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.Regression</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a></code>
   
-    (default <code>PolynomialRegression</code>)
-  </td>
-  <td class='break-word'><span>Regression class with a predict method
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.regressionOptions</span> <code class='quiet'>any?</code>
+    <tr>
+  <td class='break-word'><span class='code bold'>options.regression.regressionOptions</span> <code class='quiet'>any?</code>
   </td>
   <td class='break-word'><span>Options for regressionFunction
 </span></td>
 </tr>
 
 
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.tolerance</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
+  
+    <tr>
+  <td class='break-word'><span class='code bold'>options.regression.tolerance</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
   
     (default <code>0.001</code>)
   </td>
@@ -215,9 +212,21 @@ Analyst 2010, 135 (5), 1138–1146. <a href="https://doi.org/10.1039/B922045C">h
 </tr>
 
 
+  
+
+
               
             </tbody>
           </table>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>function</span> <code class='quiet'>(any)</code>
+	    §Regression = PolynomialRegression] - Regression class with a predict method
+
+          </div>
           
         </div>
       
@@ -229,7 +238,7 @@ Analyst 2010, 135 (5), 1138–1146. <a href="https://doi.org/10.1039/B922045C">h
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>BaselineOutput</code>:
+      <code><a href="#baselineoutput">BaselineOutput</a></code>:
         
 
       
@@ -259,21 +268,25 @@ Analyst 2010, 135 (5), 1138–1146. <a href="https://doi.org/10.1039/B922045C">h
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='baseline'>
-      Baseline
+    <h3 class='fl m0' id='baselineoutput'>
+      BaselineOutput
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/4e5da3f5762dc5c0fb8869abfe3c5332610ac356/src/output.js#L7-L18'>
-      <span>src/output.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/a3e348f1f53a73456b40f04feec08aab66a36712/src/index.js#L14-L18'>
+      <span>src/index.js</span>
       </a>
     
   </div>
   
 
-  <p>Output class for baseline corrections</p>
-
-    <div class='pre p1 fill-light mt0'>new Baseline()</div>
+  
+    <div class='pre p1 fill-light mt0'>BaselineOutput</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
   
   
 
@@ -286,6 +299,23 @@ Analyst 2010, 135 (5), 1138–1146. <a href="https://doi.org/10.1039/B922045C">h
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>baseline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>correctedSpectrum</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
+          
+          
+        </div>
+      
+    </div>
   
 
   
@@ -318,7 +348,7 @@ Analyst 2010, 135 (5), 1138–1146. <a href="https://doi.org/10.1039/B922045C">h
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/4e5da3f5762dc5c0fb8869abfe3c5332610ac356/src/iterativePolynomial.js#L25-L34'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/a3e348f1f53a73456b40f04feec08aab66a36712/src/iterativePolynomial.js#L26-L36'>
       <span>src/iterativePolynomial.js</span>
       </a>
     
@@ -333,7 +363,7 @@ Baseline Correction by Improved Iterative Polynomial Fitting with Automatic Thre
 Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
 <a href="https://doi.org/10.1016/j.chemolab.2005.08.009">https://doi.org/10.1016/j.chemolab.2005.08.009</a>.</p>
 
-    <div class='pre p1 fill-light mt0'>iterativePolynomialBaseline(spectrum: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, x: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?): BaselineOutput</div>
+    <div class='pre p1 fill-light mt0'>iterativePolynomialBaseline(ys: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?): <a href="#baselineoutput">BaselineOutput</a></div>
   
   
 
@@ -350,17 +380,8 @@ Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>spectrum</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
+            <span class='code bold'>ys</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
 	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>x</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
-	    Optional, Independent axis variable. If not specified, we use a linear grid
-
           </div>
           
         </div>
@@ -387,7 +408,23 @@ Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.maxIterations</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
+  <td class='break-word'><span class='code bold'>options.x</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>?</code>
+  </td>
+  <td class='break-word'><span>Optional, Independent axis variable. If not specified, we use a linear grid
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.regression</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?</code>
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+  
+    <tr>
+  <td class='break-word'><span class='code bold'>options.regression.maxIterations</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
   
     (default <code>100</code>)
   </td>
@@ -396,9 +433,9 @@ Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
 </tr>
 
 
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.Regression</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a></code>
+  
+    <tr>
+  <td class='break-word'><span class='code bold'>options.regression.Regression</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a></code>
   
     (default <code>PolynomialRegression</code>)
   </td>
@@ -407,23 +444,34 @@ Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
 </tr>
 
 
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.regressionOptions</span> <code class='quiet'>any?</code>
+  
+    <tr>
+  <td class='break-word'><span class='code bold'>options.regression.regressionOptions</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?</code>
   </td>
   <td class='break-word'><span>Options for regressionFunction
 </span></td>
 </tr>
 
 
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.tolerance</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
+  
+    <tr>
+  <td class='break-word'><span class='code bold'>options.regression.tolerance</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
   
     (default <code>0.001</code>)
   </td>
   <td class='break-word'><span>Convergence error tolerance
 </span></td>
+</tr>
+
+
+  
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.regression</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?</code>
+  </td>
+  <td class='break-word'><span></span></td>
 </tr>
 
 
@@ -441,7 +489,7 @@ Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>BaselineOutput</code>:
+      <code><a href="#baselineoutput">BaselineOutput</a></code>:
         
 
       
@@ -476,7 +524,7 @@ Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/4e5da3f5762dc5c0fb8869abfe3c5332610ac356/src/rollingAverage.js#L17-L35'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/a3e348f1f53a73456b40f04feec08aab66a36712/src/rollingAverage.js#L15-L33'>
       <span>src/rollingAverage.js</span>
       </a>
     
@@ -484,7 +532,7 @@ Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
   
 
   
-    <div class='pre p1 fill-light mt0'>rollingAverageBaseline(spectrum: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): BaselineOutput</div>
+    <div class='pre p1 fill-light mt0'>rollingAverageBaseline(ys: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="#baselineoutput">BaselineOutput</a></div>
   
   
 
@@ -501,7 +549,7 @@ Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>spectrum</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
+            <span class='code bold'>ys</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
 	    
           </div>
           
@@ -549,7 +597,7 @@ Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>BaselineOutput</code>:
+      <code><a href="#baselineoutput">BaselineOutput</a></code>:
         
 
       
@@ -584,7 +632,7 @@ Chemometrics and Intelligent Laboratory Systems 2006, 82 (1), 59–65.
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/4e5da3f5762dc5c0fb8869abfe3c5332610ac356/src/rollingBall.js#L31-L39'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/a3e348f1f53a73456b40f04feec08aab66a36712/src/rollingBall.js#L29-L37'>
       <span>src/rollingBall.js</span>
       </a>
     
@@ -606,7 +654,7 @@ Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions
 (2) Kristian Hovde Liland, Bjørn-Helge Mevik, Roberto Canteri: baseline.
 <a href="https://cran.r-project.org/web/packages/baseline/index.html">https://cran.r-project.org/web/packages/baseline/index.html</a></p>
 
-    <div class='pre p1 fill-light mt0'>rollingBallBaseline(spectrum: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): BaselineOutput</div>
+    <div class='pre p1 fill-light mt0'>rollingBallBaseline(ys: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="#baselineoutput">BaselineOutput</a></div>
   
   
 
@@ -623,7 +671,7 @@ Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>spectrum</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
+            <span class='code bold'>ys</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
 	    
           </div>
           
@@ -680,7 +728,7 @@ Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>BaselineOutput</code>:
+      <code><a href="#baselineoutput">BaselineOutput</a></code>:
         
 
       
@@ -715,7 +763,7 @@ Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/4e5da3f5762dc5c0fb8869abfe3c5332610ac356/src/rollingMedian.js#L17-L35'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo/baselines/blob/a3e348f1f53a73456b40f04feec08aab66a36712/src/rollingMedian.js#L15-L33'>
       <span>src/rollingMedian.js</span>
       </a>
     
@@ -723,7 +771,7 @@ Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions
   
 
   
-    <div class='pre p1 fill-light mt0'>rollingMedianBaseline(spectrum: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): BaselineOutput</div>
+    <div class='pre p1 fill-light mt0'>rollingMedianBaseline(ys: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="#baselineoutput">BaselineOutput</a></div>
   
   
 
@@ -740,7 +788,7 @@ Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>spectrum</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
+            <span class='code bold'>ys</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
 	    
           </div>
           
@@ -788,7 +836,7 @@ Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>BaselineOutput</code>:
+      <code><a href="#baselineoutput">BaselineOutput</a></code>:
         
 
       
