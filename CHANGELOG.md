@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/cheminfo/baselines/compare/v0.1.2...v1.0.0) (2021-03-24)
+
+
+### Features
+
+* Fix Luc's suggestions ([#21](https://www.github.com/cheminfo/baselines/issues/21)) ([5c11f20](https://www.github.com/cheminfo/baselines/commit/5c11f201a7ce1122baf48f52179e40efea99a641))
+
+
+### Bug Fixes
+
+* update dependencies ([e77723e](https://www.github.com/cheminfo/baselines/commit/e77723eebfd17896a57893dec1e559b886e2511e))
+
 ### [0.1.2](https://www.github.com/cheminfo/baselines/compare/v0.1.1...v0.1.2) (2021-02-09)
 
 

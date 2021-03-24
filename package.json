@@ -1,6 +1,6 @@
 {
   "name": "baselines",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "baseline correction methods for javascript",
   "main": "lib/index.js",
   "module": "src/index.js",
