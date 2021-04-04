@@ -1,7 +1,7 @@
 {
   "name": "baselines",
   "version": "1.0.0",
-  "description": "baseline correction methods for javascript",
+  "description": "baselines provides a collection of baseline correction methods.",
   "main": "lib/index.js",
   "module": "src/index.js",
   "files": [
@@ -40,19 +40,38 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.13.8",
-    "@types/jest": "^26.0.21",
+    "@types/jest": "^26.0.22",
     "cheminfo-build": "^1.1.10",
-    "eslint": "^7.22.0",
+    "eslint": "^7.23.0",
     "eslint-config-cheminfo": "^5.2.3",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
-    "rollup": "^2.42.4"
+    "rollup": "^2.44.0"
   },
   "dependencies": {
     "ml-airpls": "^1.0.0",
-    "ml-array-sequential-fill": "^1.1.5",
+    "ml-array-sequential-fill": "^1.1.6",
     "ml-baseline-correction-regression": "^1.0.0",
     "ml-rolling-ball-baseline": "^1.0.0",
-    "ml-spectra-processing": "^5.8.0"
+    "ml-spectra-processing": "^5.9.0"
+  },
+  "cheminfo": {
+    "logo": "https://raw.githubusercontent.com/cheminfo/font/master/src/chart/scatter-line.svg",
+    "domain": [
+      "Visualization"
+    ],
+    "technique": {
+      "name": "Baseline Correction"
+    },
+    "functionality": {
+      "fileTypes:": [],
+      "techniques": [
+        "rolling ball",
+        "iterative polynomial regression",
+        "rolling median",
+        "rolling mean",
+        "adaptive iteratively reweighted penalized least squares"
+      ]
+    }
   }
 }
